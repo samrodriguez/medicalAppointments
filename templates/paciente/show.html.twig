@@ -1,46 +1,58 @@
-{% extends 'base.html.twig' %}
-
+{% extends 'layout.html.twig' %}
 {% block title %}Paciente{% endblock %}
+{% block body%}
+    <div class="row">
+        <div class="col-sm-10 offset-1">
+            <div class="card">
 
-{% block body %}
-    <h1>Paciente</h1>
-
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ paciente.id }}</td>
-            </tr>
-            <tr>
-                <th>Dui</th>
-                <td>{{ paciente.dui }}</td>
-            </tr>
-            <tr>
-                <th>Expediente</th>
-                <td>{{ paciente.expediente }}</td>
-            </tr>
-            <tr>
-                <th>Nombre</th>
-                <td>{{ paciente.nombre }}</td>
-            </tr>
-            <tr>
-                <th>Fecha</th>
-                <td>{{ paciente.fecha ? paciente.fecha|date('Y-m-d') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Direccion</th>
-                <td>{{ paciente.direccion }}</td>
-            </tr>
-            <tr>
-                <th>Telefono</th>
-                <td>{{ paciente.telefono }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <a href="{{ path('paciente_index') }}">back to list</a>
-
-    <a href="{{ path('paciente_edit', {'id': paciente.id}) }}">edit</a>
-
-    {{ include('paciente/_delete_form.html.twig') }}
+                <div class="card-header">
+                    <a class="btn btn-secondary" href="{{ path('app_menu') }}">Menu Principal</a> |
+                    Paciente </div>
+                <div class="card-body">
+                    <h5 class="card-title text-center">Mostrando la informacion del paciente</h5>
+                    <p class="card-text"></p>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <table class="table">
+                                <tbody>
+                                <tr>
+                                    <th>Id</th>
+                                    <td>{{ paciente.id }}</td>
+                                </tr>
+                                <tr>
+                                    <th>DUI</th>
+                                    <td>{{ paciente.dui }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Expediente</th>
+                                    <td>{{ paciente.expediente }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Nombre Completo</th>
+                                    <td>{{ paciente.nombre }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Fecha</th>
+                                    <td>{{ paciente.fecha ? paciente.fecha|date('Y-m-d') : '' }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Direccion</th>
+                                    <td>{{ paciente.direccion }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Telefono</th>
+                                    <td>{{ paciente.telefono }}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <a class="btn btn-secondary" href="{{ path('paciente_index') }}">Regresar al listado</a>
+                    <a class="btn btn-primary" href="{{ path('paciente_edit', {'id': paciente.id}) }}">Editar</a>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

@@ -1,13 +1,36 @@
-{% extends 'base.html.twig' %}
-
-{% block title %}Edit Paciente{% endblock %}
-
-{% block body %}
-    <h1>Edit Paciente</h1>
-
-    {{ include('paciente/_form.html.twig', {'button_label': 'Update'}) }}
-
-    <a href="{{ path('paciente_index') }}">back to list</a>
-
-    {{ include('paciente/_delete_form.html.twig') }}
+{% extends 'layout.html.twig' %}
+{% block title %}Nuevo Paciente{% endblock %}
+{% block body%}
+    <div class="row">
+        <div class="col-sm-10 offset-1">
+            <div class="card">
+                {{ form_start(form) }}
+                <div class="card-header">
+                    <a class="btn btn-secondary" href="{{ path('app_menu') }}">Menu Principal</a> |
+                    Editar Paciente </div>
+                <div class="card-body">
+                    <h5 class="card-title text-center">Porfavor complete la informacion</h5>
+                    <p class="card-text"></p>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            {{ include('paciente/_form.html.twig', {'button_label': 'Editar'}) }}
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button class="btn btn-primary">{{ button_label|default('Editar') }}</button>
+                    <a class="btn btn-secondary" href="{{ path('paciente_index') }}">Regresar al listado</a>
+                    {#
+                    {{ include('paciente/_delete_form.html.twig') }}
+                    #}
+                </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
 {% endblock %}
+
+
+
+
+

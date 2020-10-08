@@ -2,13 +2,13 @@
     <thead>
         <tr>
             <th>Id</th>
-            <th>Dui</th>
+            <th>DUI</th>
             <th>Expediente</th>
-            <th>Nombre</th>
-            <th>Fecha</th>
+            <th>Nombre Completo</th>
+            <th>Fecha de nacimiento</th>
             <th>Direccion</th>
             <th>Telefono</th>
-            <th>actions</th>
+            <th>Opciones</th>
         </tr>
     </thead>
     <tbody>
@@ -18,19 +18,19 @@
             <td>{{ paciente.dui }}</td>
             <td>{{ paciente.expediente }}</td>
             <td>{{ paciente.nombre }}</td>
-            <td>{{ paciente.fecha ? paciente.fecha|date('Y-m-d') : '' }}</td>
+            <td>{{ paciente.fecha ? paciente.fecha|date('d-m-Y') : '' }}</td>
             <td>{{ paciente.direccion }}</td>
             <td>{{ paciente.telefono }}</td>
             <td>
-                <a href="{{ path('paciente_show', {'id': paciente.id}) }}">show</a>
-                <a href="{{ path('paciente_edit', {'id': paciente.id}) }}">edit</a>
+                <a class="btn btn-secondary btn-sm" href="{{ path('paciente_show', {'id': paciente.id}) }}">show</a>
+                <a class="btn btn-secondary btn-sm" href="{{ path('paciente_edit', {'id': paciente.id}) }}">edit</a>
             </td>
         </tr>
     {% else %}
         <tr>
-            <td colspan="8">no records found</td>
+            <td colspan="8">No hay registros encontrados</td>
         </tr>
     {% endfor %}
     </tbody>
 </table>
-<a href="{{ path('paciente_new') }}">Create new</a>
+
