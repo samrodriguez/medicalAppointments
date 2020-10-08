@@ -1,0 +1,21 @@
+{% extends 'layout.html.twig' %}
+
+ {% block  body %}
+  <div class="row">
+  <div class="col-sm-12">
+  <div class="card">
+   <div class="card-header">Total de consultas por especialidad</div>
+   <div class="card-body">
+    <h5 class="card-title">Descripcion del reporte fecha - fecha </h5>
+    <p class="card-text"></p>
+     <div class="row">
+      <div class="col-sm-12">
+       {{ include ("reporte/_consultas.html.twig", { 'consultas':consultas}) }}
+      </div>
+     </div>
+   </div>
+  </div>
+  </div>
+  </div>
+  </div>
+ {% endblock %}
