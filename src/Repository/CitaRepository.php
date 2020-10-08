@@ -21,20 +21,19 @@ class CitaRepository extends ServiceEntityRepository
 
     // /**
     //  * @return Cita[] Returns an array of Cita objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    //  */    
+    public function sumaCitas($fecha)
     {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('c.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+        $fecha = $fecha->format('Y-m-d');
+        $dql = 'SELECT COALESCE(COUNT(c),0) AS SUMA, e.nombre AS ESPECIALIDAD '
+            . "FROM App\Entity\Cita c "
+            . 'LEFT OUTER JOIN c.Especialidad e '
+            . "WHERE c.fecha='$fecha'"
+            . "GROUP BY e.nombre";           
+        $repositorio = $this->getEntityManager()->createQuery($dql);
+
+        return $repositorio->getResult();
     }
-    */
 
     /*
     public function findOneBySomeField($value): ?Cita

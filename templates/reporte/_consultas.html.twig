@@ -7,12 +7,19 @@
  </tr>
  </thead>
  <tbody>
- {% for key,consulta in consultas %}
+{% for key,especialidad in especialidades %}
+   <tr>
+    <td>{{ loop.index }}</td>
+    <td>{{ especialidad.ESPECIALIDAD }}</td>
+    <td>{{ especialidad.SUMA }}</td>
+   </tr>         
+{% endfor %}         
+ {#{% for key,consulta in consultas %}
   <tr>
    <td>{{ consulta.id }}</td>
    <td>{{ consulta.nombre }}</td>
    <td>{{ consulta.total }}</td>
   </tr>
- {% endfor %}
+ {% endfor %}#}
  </tbody>
  </table>
