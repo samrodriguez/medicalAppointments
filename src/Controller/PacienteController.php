@@ -7,14 +7,14 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-class DefaultController extends AbstractController
+class PacienteController extends AbstractController
 {
 
     /**
-     * @Route("/", name="app_menu", methods={"GET"})
+     * @Route("/paciente", name="app_paciente", methods={"GET","POST"})
      */
-    public function menuAction(): Response
+    public function pacienteAction(): Response
     {
-        return $this->render('default/menu.html.twig');
+        return $this->render('paciente/index.html.twig');
     }
 }
