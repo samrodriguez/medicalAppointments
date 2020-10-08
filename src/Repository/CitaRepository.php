@@ -19,6 +19,21 @@ class CitaRepository extends ServiceEntityRepository
         parent::__construct($registry, Cita::class);
     }
 
+    public function encontrarChoques($paciente,$fecha,$especialidad)
+    {
+
+
+        $entityManager = $this->getEntityManager();
+        $query = $entityManager->createQuery(
+            "SELECT m,rol FROM App\Entity\AppMenu m " .
+            'LEFT OUTER JOIN m.appRole rol ' .
+            'WHERE m.statusItem=1 AND m.slug=:slug AND m.appEnv=:env AND rol.name IN (:r)'
+        )->setParameters(['env' => $env, 'slug' => $this->module, 'r' => $roles]);
+
+        return $query->getResult();
+    }
+
+
     // /**
     //  * @return Cita[] Returns an array of Cita objects
     //  */    
