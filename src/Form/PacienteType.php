@@ -15,7 +15,7 @@ class PacienteType extends AbstractType
     {
         $builder
             ->add('dui',TextType::class, [
-                'label' => 'DUI',
+                'label' => 'DUI',                
                 'attr' => [ 'class' => 'form-control', 'autofocus' => 'autofocus']
             ])
             ->add('expediente',TextType::class, [
@@ -32,10 +32,14 @@ class PacienteType extends AbstractType
             ])
             ->add('direccion',TextType::class, [
                 'label' => 'Direccion',
+                'required' => false,
                 'attr' => [ 'class' => 'form-control']
             ])
-            ->add('telefono')
-
+            ->add('telefono', TextType::class, [
+                'label' => 'Telefono',
+                'required' => false,
+                'attr' => [ 'class' => 'form-control']
+            ])
         ;
     }
 
