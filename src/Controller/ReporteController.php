@@ -7,7 +7,10 @@ use App\Entity\Cita;
 use App\Repository\EspecialidadRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 /**
  *
@@ -19,21 +22,25 @@ class ReporteController extends AbstractController
     /**
      * @Route("/consultas", name="app_consultasxespecialidad", methods={"GET","POST"})
      */
-    public function consultasAction(EspecialidadRepository $especialidadRepository): Response
+    public function consultasAction(Request $request): Response
     {
-        $date = new \DateTime();        
+        $date = new \DateTime(); 
+        $form = $this->createFormBuilder()
+            ->setAction($this->generateUrl('app_consultasxespecialidad'))
+            ->setMethod('POST')
+            ->add('fecha', DateType::class, ['label'=>false])
+            ->add('save', SubmitType::class, ['label'=>'Filtrar'])
+            ->getForm(); 
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $date = $form["fecha"]->getData();
+        }       
         $entityManager = $this->getDoctrine()->getManager();
         $especialidades = $entityManager->getRepository(Cita::class)->sumaCitas($date);
-        /*$consultas = [
-            ['id'=> 1, 'nombre'=> 'pediatría','total'=> 1,],
-            ['id'=> 2, 'nombre'=> 'dermatología,','total'=> 5,],
-            ['id'=> 3, 'nombre'=> 'cirugía','total'=> 7,],
-            ['id'=> 4, 'nombre'=> 'otorrinolaringología','total'=> 4,],
-            ['id'=> 5, 'nombre'=> 'ortopedia.','total'=> 190,]
-            ];*/
         return $this->render('reporte/consultas.html.twig',[
-            //'consultas' => $consultas,
             'especialidades' => $especialidades,
+            'date' => $date,
+            'form' => $form->createView(),
         ]);
     }
 }

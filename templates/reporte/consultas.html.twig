@@ -6,7 +6,9 @@
   <div class="card">
    <div class="card-header">Total de consultas por especialidad</div>
    <div class="card-body">
-    <h5 class="card-title">Descripcion del reporte fecha - fecha </h5>
+       {{ form(form) }}
+       <h5 class="card-title">Descripcion del reporte {{ date|date('d-M-Y') }} </h5>
+       {{ form_end(form) }}
     <p class="card-text"></p>
      <div class="row">
       <div class="col-sm-12">
