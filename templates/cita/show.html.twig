@@ -1,26 +1,46 @@
-{% extends 'base.html.twig' %}
-
+{% extends 'layout.html.twig' %}
 {% block title %}Cita{% endblock %}
-
-{% block body %}
-    <h1>Cita</h1>
-
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ citum.id }}</td>
-            </tr>
-            <tr>
-                <th>Fecha</th>
-                <td>{{ citum.fecha ? citum.fecha|date('Y-m-d') : '' }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <a href="{{ path('cita_index') }}">back to list</a>
-
-    <a href="{{ path('cita_edit', {'id': citum.id}) }}">edit</a>
-
-    {{ include('cita/_delete_form.html.twig') }}
+{% block body%}
+    <div class="row">
+        <div class="col-sm-10 offset-1">
+            <div class="card">
+                <div class="card-header">
+                    <a class="btn btn-secondary" href="{{ path('app_menu') }}">Menu Principal</a> |
+                    Cita  </div>
+                <div class="card-body">
+                    <h5 class="card-title text-center">Informacion de la Cita</h5>
+                    <p class="card-text">/p>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <table class="table">
+                                <tbody>
+                                <tr>
+                                    <th>Id</th>
+                                    <td>{{ citum.id }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Fecha</th>
+                                    <td>{{ citum.fecha ? citum.fecha|date('Y-m-d') : '' }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Paciente</th>
+                                    <td>{{ citum.paciente.nombre }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Especialidad</th>
+                                    <td>{{ citum.especialidad.nombre }}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <a class="btn btn-primary" href="{{ path('cita_edit', {'id': citum.id}) }}">edit</a>
+                    <a class="btn btn-secondary" href="{{ path('cita_index') }}">Regresar al listado</a>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
+
