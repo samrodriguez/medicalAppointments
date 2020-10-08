@@ -1,35 +1,26 @@
-{% extends 'base.html.twig' %}
+{% extends 'layout.html.twig' %}
+{% block title %}Paciente{% endblock %}
+ {% block body%}
+     <div class="row">
+         <div class="col-sm-10 offset-1">
+             <div class="card">
+                 <div class="card-header">
+                     <a class="btn btn-secondary" href="{{ path('app_menu') }}">Menu Principal</a>
+                     <a class="btn btn-primary" href="{{ path('cita_new') }}">Nueva Cita</a>
+                 </div>
+                 <div class="card-body">
+                     <h5 class="card-title text-center">Listado de Pacientes Registrados </h5>
+                     <p class="card-text"></p>
+                     <div class="row">
+                         <div class="col-sm-12">
+                             {{ include ("cita/_index.html.twig", { 'citas':citas}) }}
+                         </div>
+                     </div>
+                 </div>
+                 <div class="card-footer">
 
-{% block title %}Cita index{% endblock %}
-
-{% block body %}
-    <h1>Cita index</h1>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Fecha</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for citum in citas %}
-            <tr>
-                <td>{{ citum.id }}</td>
-                <td>{{ citum.fecha ? citum.fecha|date('Y-m-d') : '' }}</td>
-                <td>
-                    <a href="{{ path('cita_show', {'id': citum.id}) }}">show</a>
-                    <a href="{{ path('cita_edit', {'id': citum.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="3">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('cita_new') }}">Create new</a>
-{% endblock %}
+                 </div>
+             </div>
+         </div>
+     </div>
+ {% endblock %}
